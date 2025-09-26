@@ -1,3 +1,5 @@
+ "client";
+
 import Image from "next/image";
 import Hero from "../app/components/HeroCarousel";
 import ShortMessage from "../app/components/ShortMessage";
@@ -5,6 +7,7 @@ import SearchEngine from "../app/components/SearchEngine";
 import SchoolsListTable from "./components/SchoolsListTable";
 import Services from "../app/components/Services"
 import BlogSection from "./components/BlogSection";
+import Allabout from "./components/Allabout";
 
 export default function Home() {
   return (
@@ -19,6 +22,9 @@ export default function Home() {
         <Services />
         <div>
           <BlogSection />
+        </div>
+        <div className="h-10">
+          <Allabout />
         </div>
       </div>
     </main>

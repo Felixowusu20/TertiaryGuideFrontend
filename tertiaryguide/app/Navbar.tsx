@@ -7,11 +7,11 @@ import { FaBars, FaTimes } from "react-icons/fa";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/wassce-checker", label: "WASSCE Checker" },
-  { href: "/university-forms", label: "University Forms" },
+  { href: "/wassce-checker", label: "WASSCE" },
+  { href: "/university-forms", label: "Forms" },
   { href: "/my-forms", label: "My Forms" },
-  { href: "/notifications", label: "Notifications" },
-  { href: "/about", label: "About" },
+  { href: "/notifications", label: "Alerts" },
+  { href: "/about", label: "Info" },
 ];
 
 export default function Navbar() {
@@ -20,14 +20,16 @@ export default function Navbar() {
   return (
     <nav className="bg-[var(--tg-navy)] text-[#FDBE33] px-4 md:px-10 py-3 flex items-center justify-between shadow-lg sticky top-0 z-40">
       <Link href="/" className="flex items-center gap-2 group z-50">
-        <Image src="/tertiaryguide-logo.svg" alt="Tertiary Guide Logo" width={40} height={40} priority />
+        <Image src="/tguide.jpg" alt="Tertiary Guide Logo" width={40} height={40} priority />
         <span className="text-2xl font-extrabold tracking-tight group-hover:text-[var(--tg-accent)] transition-colors">Tertiary Guide</span>
       </Link>
       {/* Desktop Nav */}
-      <ul className="hidden md:flex gap-6 lg:gap-10 items-center text-base font-medium">
+  <ul className="hidden md:flex gap-4 lg:gap-8 items-center text-base font-medium">
         {navLinks.map((link) => (
-          <li key={link.href}>
-            <Link href={link.href} className="hover:text-white transition-colors">{link.label}</Link>
+          <li key={link.href} className="whitespace-nowrap">
+            <Link href={link.href} className="px-2 py-1 rounded hover:text-white hover:bg-[var(--tg-accent)] transition-colors">
+              {link.label}
+            </Link>
           </li>
         ))}
         <li>

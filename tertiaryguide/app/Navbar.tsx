@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const navLinks = [
@@ -16,18 +16,42 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="bg-[var(--tg-navy)] text-[#FDBE33] px-4 md:px-10 py-3 flex items-center justify-between shadow-lg sticky top-0 z-40">
+    <nav
+      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300
+        ${scrolled ? "bg-[var(--tg-navy)] shadow-lg" : "bg-transparent"}
+        text-[#FDBE33] px-4 md:px-10 py-3 flex items-center justify-between backdrop-blur-md`}
+    >
       <Link href="/" className="flex items-center gap-2 group z-50">
-        <Image src="/tguide.jpg" alt="Tertiary Guide Logo" width={40} height={40} priority />
-        <span className="text-2xl font-extrabold tracking-tight group-hover:text-[var(--tg-accent)] transition-colors">Tertiary Guide</span>
+        <Image
+          src="/tguide.jpg"
+          alt="Tertiary Guide Logo"
+          width={40}
+          height={40}
+          priority
+          className={`rounded-full border-2 transition-all duration-300 ${scrolled ? "border-[#FDBE33] bg-white" : "border-white bg-white/80"}`}
+        />
+        <span className={`text-2xl font-extrabold tracking-tight transition-colors duration-300 ${scrolled ? "text-[#FDBE33]" : "text-[var(--tg-navy)] group-hover:text-[var(--tg-accent)]"}`}>Tertiary Guide</span>
       </Link>
       {/* Desktop Nav */}
-  <ul className="hidden md:flex gap-4 lg:gap-8 items-center text-base font-medium">
+      <ul className="hidden md:flex gap-4 lg:gap-8 items-center text-base font-medium">
         {navLinks.map((link) => (
           <li key={link.href} className="whitespace-nowrap">
-            <Link href={link.href} className="px-2 py-1 rounded hover:text-white hover:bg-[var(--tg-accent)] transition-colors">
+            <Link
+              href={link.href}
+              className="px-2 py-1 rounded text-white hover:text-[var(--tg-accent)] hover:bg-white/10 transition-colors"
+              style={{textShadow: '0 1px 4px rgba(0,0,0,0.12)'}}
+            >
               {link.label}
             </Link>
           </li>

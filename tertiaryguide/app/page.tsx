@@ -9,6 +9,7 @@ import BlogSection from "./components/BlogSection";
 import Allabout from "./components/Allabout";
 import Testimonials from "./components/Testimonials";
 import FAQ from "../app/components/FAQ";
+import ContactForms from "../app/components/ContactForms";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <BlogSection />
         <Allabout />
         <Testimonials />
+        <ContactForms />
         <FAQ />
       </div>
     </main>
